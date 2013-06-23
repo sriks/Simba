@@ -1,0 +1,101 @@
+Install node.js from http://nodejs.org/download/
+
+Starting server
+
+In Terminal …
+#Install all dependencies 
+> node install -d 
+
+#Start the server
+> node index.js
+created app
+dbservice says hello!
+startService() success
+
+# Press Control+C to kill the server
+
+Accessing Server
+
+All access happens through the host http://localhost:6504/a0
+Listens on port 6504 and a0 is alpha 0 version.
+
+Creating zippr
+
+POST on <host>/createzippr
+POST on http://127.0.0.1:6504/a0/createzippr
+POST data: 
+{
+    "geo":{"lat":37.76893497,
+           "long":-122.42284884},
+           
+    "title":"Coffee day",
+    "locality":"Jublee Hills",
+    "meta":["meetmehere"],
+    "category":["food"],
+    "keywords":["cofee"]
+}
+
+Response is the same post data with zippr added to it
+Use cUrl for faster testing
+> curl -d @postdata.json -H "Content-Type: appcation/json" http://127.0.0.1:6504/a0/createzippr
+
+Here postdata.json is json document containing the POST data
+
+
+Get zipper info
+
+GET on <host>/zippr=<zipprid>
+Example: http://localhost:6504/a0/zippr=ANYS123
+
+Get all categories
+GET on <host>/categories
+Currently the result includes duplicates also. 
+Example: http://localhost:6504/a0/categories
+Response:
+{
+  "ok": true,
+  "result": [
+    {
+      "category": [
+        "food"
+      ]
+    },
+    {
+      "category": [
+        "cinema"
+      ]
+    }
+...
+}
+
+Fetch all zippers in a category
+GET on <host>/category=food
+Example: http://localhost:6504/a0/category=food
+Response:
+{
+  "ok": true,
+  "result": [
+    {
+      "geo": {
+        "lat": "37.76893497",
+        "long": "-122.42284884"
+      },
+      "title": "Coffee day",
+      "locality": "Jublee Hills",
+      "meta": [
+        "meetmehere"
+      ],
+      "category": [
+        "food"
+      ],
+      "keywords": [
+        "cofee"
+      ],
+      "zippr": "KJHJ997",
+      "_id": "51c7088256b0685679000009"
+    },
+…
+}
+
+
+
