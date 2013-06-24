@@ -1,3 +1,11 @@
+Install mongodb 
+
+Install from mongodb website or
+> brew install mongodb
+
+Once installed start mongo db server 
+> mongod
+
 Install node.js from http://nodejs.org/download/
 
 Starting server
